@@ -6,7 +6,6 @@ from PIL import Image
 
 load_dotenv()
 
-# Default to a local path, but allow override via environment variable (Docker uses /app/models/...)
 MODEL_PATH = os.environ.get("MODEL_PATH", "model.keras")
 
 print(f"Checking for model at {MODEL_PATH}...")
@@ -20,7 +19,6 @@ else:
     print(f"WARNING: Model file not found at {MODEL_PATH}. Running in CI/mock mode.")
 
 def predict_image(pil_image):
-    # If the model didn't load (e.g., in GitHub Actions), return a dummy prediction
     if model is None:
         return 0.1234 
     
