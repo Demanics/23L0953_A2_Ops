@@ -2,3 +2,5 @@ venv/
 figures/
 data/
 Artifacts/
+
+__pycache__/ 
