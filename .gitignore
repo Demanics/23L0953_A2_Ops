@@ -4,3 +4,5 @@ data/
 Artifacts/
 
 __pycache__/ 
+
+.env.env
