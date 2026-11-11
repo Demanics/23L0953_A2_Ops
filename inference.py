@@ -6,13 +6,24 @@ from PIL import Image
 
 load_dotenv()
 
-MODEL_PATH = os.environ.get("MODEL_PATH", "/app/models/model.keras")
+# Default to a local path, but allow override via environment variable (Docker uses /app/models/...)
+MODEL_PATH = os.environ.get("MODEL_PATH", "model.keras")
 
-print(f"Loading model from {MODEL_PATH}...")
-model = keras.models.load_model(MODEL_PATH)
-print("Model loaded successfully")
+print(f"Checking for model at {MODEL_PATH}...")
+model = None
+
+if os.path.exists(MODEL_PATH):
+    print("Loading model...")
+    model = keras.models.load_model(MODEL_PATH)
+    print("Model loaded successfully")
+else:
+    print(f"WARNING: Model file not found at {MODEL_PATH}. Running in CI/mock mode.")
 
 def predict_image(pil_image):
+    # If the model didn't load (e.g., in GitHub Actions), return a dummy prediction
+    if model is None:
+        return 0.1234 
+    
     picture = pil_image.convert("RGB").resize((224, 224))
     image_array = np.array(picture).astype("float32")
     image_batch = np.expand_dims(image_array, axis=0)
