@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Prediction Result</h1>
+<p><strong>File:</strong> {{ filename }}</p>
+<p><strong>Verdict:</strong> 
+    <span class="{% if label == 'AiArtData' %}verdict-ai{% else %}verdict-real{% endif %}">
+        {{ label }}
+    </span>
+</p>
+<p><strong>Confidence:</strong> {{ "%.2f"|format(confidence * 100) }}%</p>
+
+<div class="caveat">
+    <strong>Honest Caveat:</strong> This model was trained on a limited dataset of digital AI art and physical paintings. It may struggle with digital illustrations made by humans, heavily filtered photos, or extreme aspect ratios. Always verify important authenticity claims manually.
+</div>
+
+<br>
+<a href="/" class="btn">Upload Another</a>
+{% endblock %}

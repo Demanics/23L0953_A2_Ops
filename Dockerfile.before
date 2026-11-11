@@ -1,0 +1,8 @@
+# BEFORE: Unoptimized version
+FROM python:3.11
+WORKDIR /app
+COPY requirements.txt .
+# Notice: No --no-cache-dir, so pip stores all downloaded archives in the image
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "app.py"]

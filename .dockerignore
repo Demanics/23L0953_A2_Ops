@@ -1,0 +1,13 @@
+.env
+venv/
+__pycache__/
+.git/
+.gitignore
+data/
+history.db
+Artifacts/
+mlruns/
+docker_warmup/
+*.pyc
+.dvc/
+*.keras

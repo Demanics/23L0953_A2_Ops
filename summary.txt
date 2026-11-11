@@ -1,0 +1,28 @@
+TOTAL FILES: 539
+READABLE: 539
+CORRUPT: 0
+EXTRA DUPLICATE COPIES: 1
+
+COUNTS PER CLASS
+class
+AiArtData    539
+
+WIDTH / HEIGHT / FILE SIZE (min, median, max)
+          width               height              size_bytes                   
+            min  median   max    min median   max        min    median      max
+class                                                                          
+AiArtData   225  1024.0  6000    135  800.0  4001      11738  199760.0  5626183
+
+COLOUR MODES PER CLASS
+class
+AiArtData    [RGB, P, RGBA, L]
+
+FORMATS PER CLASS
+class
+AiArtData    [JPEG, PNG]
+
+OVERALL
+         width  height  size_bytes
+min      225.0   135.0     11738.0
+median  1024.0   800.0    199760.0
+max     6000.0  4001.0   5626183.0

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Prediction History Trail</h1>
+<p>Permanent record of all inference requests served by the application.</p>
+
+{% if history %}
+<table>
+    <thead>
+        <tr>
+            <th>When (Timestamp)</th>
+            <th>Search (Filename)</th>
+            <th>What was decided (Verdict)</th>
+            <th>By which model</th>
+            <th>How confidently</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in history %}
+        <tr>
+            <td>{{ row['timestamp'] }}</td>
+            <td>{{ row['filename'] }}</td>
+            <td class="{% if row['label'] == 'AiArtData' %}verdict-ai{% else %}verdict-real{% endif %}">
+                {{ row['label'] }}
+            </td>
+            <td><code>{{ row['model_used'] }}</code></td>
+            <td>{{ "%.2f"|format(row['confidence'] * 100) }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No predictions yet. <a href="/">Upload an image</a> to start the database trail.</p>
+{% endif %}
+{% endblock %}
