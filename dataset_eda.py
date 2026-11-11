@@ -3,12 +3,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image
 
-table = pd.read_csv("audit.csv")
+artifacts_folder = "Artifacts"
+os.makedirs(artifacts_folder, exist_ok=True)
+
+table = pd.read_csv(os.path.join(artifacts_folder, "audit.csv"))
 table = table[table["readable"] == True]
 
 class_names = ["AiArtData", "RealArt"]
 samples_per_class = 5
-os.makedirs("figures", exist_ok=True)
 
 figure, axes = plt.subplots(len(class_names), samples_per_class, figsize=(12, 6))
 
@@ -25,7 +27,7 @@ for row_number in range(len(class_names)):
 
 figure.suptitle("Sample images per class")
 figure.tight_layout()
-figure.savefig("figures/samples.png", dpi=120)
+figure.savefig(os.path.join(artifacts_folder, "samples.png"), dpi=120)
 plt.close(figure)
 
 columns = ["width", "height", "size_kb"]
@@ -44,7 +46,7 @@ for number in range(3):
     plt.title(labels[number] + " per class")
     plt.legend()
     plt.tight_layout()
-    plt.savefig("figures/hist_" + column_name + ".png", dpi=120)
+    plt.savefig(os.path.join(artifacts_folder, "hist_" + column_name + ".png"), dpi=120)
     plt.close()
 
-print("figures saved in figures folder")
+print("saved figures in " + artifacts_folder)
