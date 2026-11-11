@@ -1,0 +1,4 @@
+flask==3.0.3
+tensorflow-cpu==2.18.0
+Pillow==11.0.0
+gunicorn==21.2.0
